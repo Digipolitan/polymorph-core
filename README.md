@@ -1,3 +1,3 @@
-# PolymorpthCore
+# PolymorphCore
 
 A description of this package.
