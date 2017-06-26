@@ -92,3 +92,12 @@ extension Class: Hashable {
         return lhs.name == rhs.name
     }
 }
+
+extension Class {
+
+    public func canonicalName(from parent: Packageable) throws -> String {
+        let package = try self.merge(parent: parent).value
+        return "\(package).\(self.name)"
+    }
+
+}

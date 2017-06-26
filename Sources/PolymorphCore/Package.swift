@@ -12,7 +12,9 @@ public struct Package: Codable {
 
     public let value: String
 
-    private static let availableCharacters = CharacterSet(charactersIn: ".abcdefghijklmnopqrstuvwxyz")
+    private static let trimCharacters = CharacterSet(charactersIn: ".")
+
+    private static let availableCharacters = CharacterSet(charactersIn: ".abcdefghijklmnopqrstuvwxyz0123456789_")
 
     public static func check(string: String) throws {
         for ch in string {
@@ -26,7 +28,7 @@ public struct Package: Codable {
 
     public init(string: String) throws {
         try Package.check(string: string)
-        self.value = string
+        self.value = string.trimmingCharacters(in: Package.trimCharacters)
     }
 
     public func append(package: Package) throws -> Package {

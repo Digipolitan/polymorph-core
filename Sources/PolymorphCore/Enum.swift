@@ -52,3 +52,12 @@ extension Enum: Hashable {
         return lhs.name == rhs.name
     }
 }
+
+extension Enum {
+
+    public func canonicalName(from parent: Packageable) throws -> String {
+        let package = try self.merge(parent: parent).value
+        return "\(package).\(self.name)"
+    }
+
+}
