@@ -26,8 +26,8 @@ public class Models: Documentable {
 
     public private(set) var classes: Set<Class> {
         didSet {
-            let remove = oldValue.filter { !classes.contains($0) }
-            let add = classes.filter { !oldValue.contains($0) }
+            let remove = oldValue.filter { !self.classes.contains($0) }
+            let add = self.classes.filter { !oldValue.contains($0) }
             remove.forEach { self.objects[$0.id] = nil }
             add.forEach { self.objects[$0.id] = $0 }
         }
@@ -35,8 +35,8 @@ public class Models: Documentable {
 
     public private(set) var enums: Set<Enum> {
         didSet {
-            let remove = oldValue.filter { !enums.contains($0) }
-            let add = enums.filter { !oldValue.contains($0) }
+            let remove = oldValue.filter { !self.enums.contains($0) }
+            let add = self.enums.filter { !oldValue.contains($0) }
             remove.forEach { self.objects[$0.id] = nil }
             add.forEach { self.objects[$0.id] = $0 }
         }
@@ -44,8 +44,8 @@ public class Models: Documentable {
 
     public private(set) var natives: Set<Native> {
         didSet {
-            oldValue.forEach { objects[$0.id] = nil }
-            natives.forEach { objects[$0.id] = $0 }
+            oldValue.forEach { self.objects[$0.id] = nil }
+            self.natives.forEach { self.objects[$0.id] = $0 }
         }
     }
 
@@ -60,15 +60,18 @@ public class Models: Documentable {
     // MARK: Objects
 
     public func findObject(uuid: UUID) -> Object? {
+        self.checkIntegrity()
         return self.objects[uuid]
     }
 
     public func searchObjects(matching: String) -> [Object] {
+        self.checkIntegrity()
         return self.objects.filter { $0.value.name.range(of: matching, options: .caseInsensitive) != nil }.map { $0.value }
     }
 
     @discardableResult
     public func addObject(_ object: Object) -> Bool {
+        self.checkIntegrity()
         if let c = object as? Class {
             return self.classes.insert(c).inserted
         } else if let e = object as? Enum {
@@ -79,6 +82,7 @@ public class Models: Documentable {
 
     @discardableResult
     public func removeObject(uuid: UUID) -> Bool {
+        self.checkIntegrity()
         if let o = self.findObject(uuid: uuid) {
             if let c = o as? Class {
                 return self.classes.remove(c) != nil
@@ -122,5 +126,15 @@ public class Models: Documentable {
 
     public func findNative(type: Native.DataType) -> Native? {
         return self.natives.first { $0.name == type.rawValue }
+    }
+
+    // MARK: Private
+
+    private func checkIntegrity() {
+        if self.objects.count == 0 {
+            self.classes.forEach { self.objects[$0.id] = $0 }
+            self.enums.forEach { self.objects[$0.id] = $0 }
+            self.natives.forEach { self.objects[$0.id] = $0 }
+        }
     }
 }
