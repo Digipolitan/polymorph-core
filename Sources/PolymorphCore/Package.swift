@@ -12,7 +12,7 @@ public struct Package: Codable {
 
     public let value: String
 
-    private static let availableCharacters = CharacterSet(charactersIn: ".abcdefghijklmopqrstuvwxyz")
+    private static let availableCharacters = CharacterSet(charactersIn: ".abcdefghijklmnopqrstuvwxyz")
 
     public static func check(string: String) throws {
         for ch in string {
