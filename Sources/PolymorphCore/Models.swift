@@ -64,6 +64,16 @@ public class Models: Documentable {
         return self.objects[uuid]
     }
 
+    public func findObject(name: String) -> Object? {
+        if let dataType = Native.DataType.from(string: name) {
+            return self.findNative(type: dataType)
+        }
+        if let c = self.findClass(name: name) {
+            return c
+        }
+        return self.findEnum(name: name)
+    }
+
     public func searchObjects(matching: String) -> [Object] {
         self.checkIntegrity()
         return self.objects.filter { $0.value.name.range(of: matching, options: .caseInsensitive) != nil }.map { $0.value }
