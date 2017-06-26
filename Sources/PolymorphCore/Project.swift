@@ -21,21 +21,19 @@ public class Project: Object, Packageable {
 
     public var version: String
 
-    public var author: String
+    public var author: String?
 
-    public var copyright: String
+    public var copyright: String?
 
     public var models: Models
 
     // MARK: Initializers
 
-    public init(name: String, package: String, author: String, copyright: String, version: String = "1.0") {
+    public init(name: String, package: String) {
         self.id = UUID()
         self.name = name
         self.package = package
-        self.author = author
-        self.copyright = copyright
-        self.version = version
+        self.version = "1.0"
         self.models = Models()
     }
 }
