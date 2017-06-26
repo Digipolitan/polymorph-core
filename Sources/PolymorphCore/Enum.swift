@@ -26,7 +26,7 @@ public struct Enum: Object, Packageable {
 
     public var name: String
 
-    public var package: String
+    public var package: Package
 
     public var documentation: String?
 
@@ -34,7 +34,7 @@ public struct Enum: Object, Packageable {
 
     // MARK: Initializers
 
-    public init(name: String, package: String, values: [Value] = []) {
+    public init(name: String, package: Package, values: [Value] = []) {
         self.id = UUID()
         self.name = name
         self.package = package

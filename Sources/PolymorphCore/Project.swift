@@ -15,7 +15,7 @@ public class Project: Object, Packageable {
 
     public var name: String
 
-    public var package: String
+    public var package: Package
 
     public var documentation: String?
 
@@ -29,7 +29,7 @@ public class Project: Object, Packageable {
 
     // MARK: Initializers
 
-    public init(name: String, package: String) {
+    public init(name: String, package: Package) {
         self.id = UUID()
         self.name = name
         self.package = package

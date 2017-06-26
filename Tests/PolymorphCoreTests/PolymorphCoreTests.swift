@@ -1,10 +1,11 @@
 import XCTest
-@testable import PolymorpthCore
+@testable import PolymorphCore
 
 class PolymorpthCoreTests: XCTestCase {
 
     func testEncodeEmptyProject() {
-        
+
+/*
         let p = Project(name: "Sample", package: "com.digipolitan.sample", author: "Digipolitan", copyright: "Digipolitan 2014")
 
         var c = Class(name: "person", package: "persons")
@@ -29,6 +30,7 @@ class PolymorpthCoreTests: XCTestCase {
             let json = String(data: data, encoding: .utf8) {
             print(json)
         }
+ */
     }
 
     func testDecodeEmptyProject() {

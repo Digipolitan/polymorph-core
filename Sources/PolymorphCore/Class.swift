@@ -26,7 +26,7 @@ public struct Class: Object, Packageable {
 
     public var name: String
 
-    public var package: String
+    public var package: Package
 
     public var documentation: String?
 
@@ -36,7 +36,7 @@ public struct Class: Object, Packageable {
 
     // MARK: Initializers
 
-    public init(name: String, package: String, extends: UUID? = nil, properties: Set<Property> = Set()) {
+    public init(name: String, package: Package, extends: UUID? = nil, properties: Set<Property> = Set()) {
         self.id = UUID()
         self.name = name
         self.package = package
