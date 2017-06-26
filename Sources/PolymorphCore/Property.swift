@@ -21,7 +21,9 @@ public struct Property: Documentable {
 
     public var isPrimary: Bool = false
 
-    public var isNonnul: Bool = false
+    public var isNonnull: Bool = false
+
+    public var isTransient: Bool = false
 
     // MARK: Initializers
 
