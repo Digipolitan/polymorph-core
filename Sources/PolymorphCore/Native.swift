@@ -9,6 +9,14 @@ import Foundation
 
 public struct Native: Object {
 
+    // MARK: Codable
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case documentation
+    }
+
     public enum DataType: String {
         case int = "Int"
         case bool = "Bool"
@@ -48,6 +56,8 @@ public struct Native: Object {
     public var name: String
 
     public var documentation: String?
+
+    public internal(set) weak var project: Project? = nil
 
     // MARK: Initializers
 

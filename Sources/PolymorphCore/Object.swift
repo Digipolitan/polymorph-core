@@ -7,7 +7,6 @@
 
 import Foundation
 
-public protocol Object: Documentable {
+public protocol Object: Member, Documentable {
     var id: UUID { get }
-    var name: String { get set }
 }

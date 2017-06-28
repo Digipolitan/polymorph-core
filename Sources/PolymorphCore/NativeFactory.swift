@@ -1,5 +1,5 @@
 //
-//  NativeObjectFactory.swift
+//  NativeFactory.swift
 //  PolymorpthCore
 //
 //  Created by Benoit BRIATTE on 15/06/2017.
@@ -9,7 +9,7 @@ import Foundation
 
 internal class NativeFactory {
 
-    public static func create() -> Set<Native> {
+    public static func create() -> [Native] {
         let dataTypes: [Native.DataType] = [
             .int,
             .bool,
@@ -21,6 +21,6 @@ internal class NativeFactory {
             .array,
             .map
         ];
-        return Set(dataTypes.map { Native(type: $0) })
+        return dataTypes.map { Native(type: $0) }
     }
 }

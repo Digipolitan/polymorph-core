@@ -35,16 +35,35 @@ public struct Class: Object, Packageable {
 
     public var extends: UUID?
 
-    public private(set) var properties: Set<Property>
+    public var canonicalName: String? {
+        guard
+            let project = self.project,
+            let package = try? self.merge(parent: project) else {
+                return nil
+        }
+        return "\(package.value).\(self.name)"
+    }
+
+    public private(set) var properties: [Property]
+
+    public internal(set) weak var project: Project? = nil {
+        didSet {
+            self.properties = self.properties.map {
+                var p = $0
+                p.project = self.project
+                return p
+            }
+        }
+    }
 
     // MARK: Initializers
 
-    public init(name: String, package: Package, extends: UUID? = nil, serializable: Bool = false, properties: Set<Property> = Set()) {
+    public init(name: String, package: Package, extends: UUID? = nil, serializable: Bool = false) {
         self.id = UUID()
         self.name = name
         self.package = package
         self.extends = extends
-        self.properties = properties
+        self.properties = []
         self.serializable = serializable
     }
 
@@ -52,15 +71,20 @@ public struct Class: Object, Packageable {
 
     @discardableResult
     public mutating func removeProperty(name: String) -> Bool {
-        if let p = self.findProperty(name: name) {
-            return self.properties.remove(p) != nil
+        if let idx = self.indexOf(property: name) {
+            self.properties.remove(at: idx)
+            return true
         }
         return false
     }
 
     @discardableResult
     public mutating func addProperty(_ property: Property) -> Bool {
-        return self.properties.insert(property).inserted
+        guard self.indexOf(property: name) == nil else {
+            return false
+        }
+        self.properties.append(property)
+        return true
     }
 
     @discardableResult
@@ -69,7 +93,14 @@ public struct Class: Object, Packageable {
     }
 
     public func findProperty(name: String) -> Property? {
-        return self.properties.first { $0.name == name }
+        if let idx = self.indexOf(property: name) {
+            return self.properties[idx]
+        }
+        return nil
+    }
+
+    private func indexOf(property name: String) -> Int? {
+        return self.properties.index(where: { $0.name == name })
     }
 
     // MARK: Linked
@@ -91,13 +122,4 @@ extension Class: Hashable {
     public static func ==(lhs: Class, rhs: Class) -> Bool {
         return lhs.name == rhs.name
     }
-}
-
-extension Class {
-
-    public func canonicalName(from parent: Packageable) throws -> String {
-        let package = try self.merge(parent: parent).value
-        return "\(package).\(self.name)"
-    }
-
 }

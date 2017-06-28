@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol Documentable: Codable {
-    var documentation: String? { get set }
+    var documentation: String? { get }
 }

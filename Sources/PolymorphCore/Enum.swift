@@ -9,6 +9,16 @@ import Foundation
 
 public struct Enum: Object, Packageable {
 
+    // MARK: Codable
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case package
+        case values
+        case documentation
+    }
+
     public struct Value: Documentable {
         public var name: String
         public var numeric: Int
@@ -31,6 +41,8 @@ public struct Enum: Object, Packageable {
     public var documentation: String?
 
     public var values: [Value]
+
+    public internal(set) weak var project: Project? = nil
 
     // MARK: Initializers
 

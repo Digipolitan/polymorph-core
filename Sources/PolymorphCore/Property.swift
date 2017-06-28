@@ -7,7 +7,19 @@
 
 import Foundation
 
-public struct Property: Documentable {
+public struct Property: Member, Documentable {
+
+    // MARK: Codable
+
+    enum CodingKeys: String, CodingKey {
+        case name
+        case type
+        case genericTypes
+        case documentation
+        case isPrimary
+        case isNonnull
+        case isTransient
+    }
 
     // MARK: Properties
 
@@ -24,6 +36,8 @@ public struct Property: Documentable {
     public var isNonnull: Bool = false
 
     public var isTransient: Bool = false
+
+    public internal(set) weak var project: Project? = nil
 
     // MARK: Initializers
 
