@@ -163,7 +163,7 @@ public class Models: Documentable {
         return self.enums.first { $0.name == name }
     }
 
-    public func searchEnum(matching: String) -> [Enum] {
+    public func searchEnums(matching: String) -> [Enum] {
         return self.enums.filter { $0.name.range(of: matching, options: .caseInsensitive) != nil }
     }
 
