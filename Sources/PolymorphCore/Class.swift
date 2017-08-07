@@ -80,7 +80,7 @@ public struct Class: Object, Packageable {
 
     @discardableResult
     public mutating func addProperty(_ property: Property) -> Bool {
-        guard self.indexOf(property: name) == nil else {
+        guard self.indexOf(property: property.name) == nil else {
             return false
         }
         self.properties.append(property)
