@@ -44,6 +44,15 @@ public struct Enum: Object, Packageable {
 
     public internal(set) weak var project: Project? = nil
 
+    public var canonicalName: String? {
+        guard
+            let project = self.project,
+            let package = try? self.merge(parent: project) else {
+                return nil
+        }
+        return "\(package.value).\(self.name)"
+    }
+
     // MARK: Initializers
 
     public init(name: String, package: Package, values: [Value] = []) {
@@ -73,13 +82,4 @@ extension Enum: Hashable {
     public static func ==(lhs: Enum, rhs: Enum) -> Bool {
         return lhs.name == rhs.name
     }
-}
-
-extension Enum {
-
-    public func canonicalName(from parent: Packageable) throws -> String {
-        let package = try self.merge(parent: parent).value
-        return "\(package).\(self.name)"
-    }
-
 }
