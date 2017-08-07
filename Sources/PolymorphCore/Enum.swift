@@ -52,6 +52,16 @@ public struct Enum: Object, Packageable {
         self.package = package
         self.values = values
     }
+
+    public mutating func addValue(_ value: Value) -> Bool {
+        for v in self.values {
+            guard v.name != value.name else {
+                return false
+            }
+        }
+        self.values.append(value)
+        return true
+    }
 }
 
 extension Enum: Hashable {
