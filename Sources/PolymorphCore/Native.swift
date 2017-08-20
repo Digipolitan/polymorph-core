@@ -41,6 +41,7 @@ public struct Native: Object {
         "double": .double,
         "float": .float,
         "string": .string,
+        "date": .date,
         "data": .data,
         "bytes": .data,
         "array": .array,

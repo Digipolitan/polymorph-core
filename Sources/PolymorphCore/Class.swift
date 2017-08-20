@@ -103,6 +103,23 @@ public struct Class: Object, Packageable {
         return self.properties.index(where: { $0.name == name })
     }
 
+    public func parentProperties() -> [Property] {
+        var properties: [Property] = []
+        guard let project = self.project else {
+            return properties
+        }
+        var cur: Class = self
+        while let extends = cur.extends {
+            if let parent = project.models.findObject(uuid: extends) as? Class {
+                properties += parent.properties
+                cur = parent
+            } else {
+                return properties
+            }
+        }
+        return properties
+    }
+
     // MARK: Linked
 
     public func isLinked(to uuid: UUID) -> Bool {
