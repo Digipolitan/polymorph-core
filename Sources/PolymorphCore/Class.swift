@@ -111,7 +111,7 @@ public struct Class: Object, Packageable {
         var cur: Class = self
         while let extends = cur.extends {
             if let parent = project.models.findObject(uuid: extends) as? Class {
-                properties += parent.properties
+                properties = parent.properties + properties
                 cur = parent
             } else {
                 return properties
