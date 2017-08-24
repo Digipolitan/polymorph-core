@@ -19,6 +19,7 @@ public struct Class: Object, Packageable {
         case extends
         case properties
         case serializable
+        case injectable
     }
 
     // MARK: Properties
@@ -32,6 +33,8 @@ public struct Class: Object, Packageable {
     public var documentation: String?
 
     public var serializable: Bool
+
+    public var injectable: Bool
 
     public var extends: UUID?
 
@@ -58,13 +61,14 @@ public struct Class: Object, Packageable {
 
     // MARK: Initializers
 
-    public init(name: String, package: Package, extends: UUID? = nil, serializable: Bool = false) {
+    public init(name: String, package: Package, extends: UUID? = nil, serializable: Bool = false, injectable: Bool = false) {
         self.id = UUID()
         self.name = name
         self.package = package
         self.extends = extends
         self.properties = []
         self.serializable = serializable
+        self.injectable = injectable
     }
 
     // MARK: Properties
