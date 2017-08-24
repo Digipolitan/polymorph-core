@@ -13,6 +13,7 @@ public struct Property: Member, Documentable {
 
     enum CodingKeys: String, CodingKey {
         case name
+        case key
         case type
         case genericTypes
         case documentation
@@ -24,6 +25,8 @@ public struct Property: Member, Documentable {
     // MARK: Properties
 
     public var name: String
+
+    public var key: String?
 
     public var type: UUID
 
