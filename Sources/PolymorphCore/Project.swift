@@ -63,7 +63,7 @@ public class Project: Packageable, Documentable {
         let comparisonResult = Polymorph.compare(version: version)
         guard comparisonResult == .orderedSame else {
             if comparisonResult == .orderedAscending {
-                throw PolymorphCoreError.polymorphOutdated(version: version)
+                throw PolymorphCoreError.polymorphCoreOutdated(version: version)
             }
             throw PolymorphCoreError.projectOutdated(version: version)
         }
