@@ -21,8 +21,8 @@ public class Models: Documentable, Codable {
 
     public var documentation: String?
 
-    private var classes: [UUID: Class]
-    private var enums: [UUID: Enum]
+    public private(set) var classes: [UUID: Class]
+    public private(set) var enums: [UUID: Enum]
 
     public internal(set) weak var project: Project? = nil {
         didSet {
