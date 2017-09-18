@@ -7,15 +7,7 @@
 
 import Foundation
 
-public struct Native: Object {
-
-    // MARK: Codable
-
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case documentation
-    }
+public class Native: Member {
 
     public enum DataType: String {
         case int = "Int"
@@ -52,18 +44,13 @@ public struct Native: Object {
 
     // MARK: Properties
 
-    public var id: UUID
-
     public var name: String
-
-    public var documentation: String?
 
     public internal(set) weak var project: Project? = nil
 
     // MARK: Initializers
 
-    public init(type: DataType) {
-        self.id = UUID()
+    internal init(type: DataType) {
         self.name = type.rawValue
     }
 }
@@ -71,7 +58,7 @@ public struct Native: Object {
 extension Native: Hashable {
 
     public var hashValue: Int {
-        return self.id.hashValue
+        return self.name.hashValue
     }
 
     public static func ==(lhs: Native, rhs: Native) -> Bool {

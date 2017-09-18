@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Enum: Object, Packageable {
+public class Enum: Object, Documentable, Packageable {
 
     // MARK: Codable
 
@@ -19,7 +19,7 @@ public struct Enum: Object, Packageable {
         case documentation
     }
 
-    public struct Value: Documentable {
+    public struct Value: Documentable, Codable {
         public var name: String
         public var numeric: Int
         public var documentation: String?
@@ -62,7 +62,7 @@ public struct Enum: Object, Packageable {
         self.values = values
     }
 
-    public mutating func addValue(_ value: Value) -> Bool {
+    public func addValue(_ value: Value) -> Bool {
         for v in self.values {
             guard v.name != value.name else {
                 return false

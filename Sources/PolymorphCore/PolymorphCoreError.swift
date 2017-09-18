@@ -10,5 +10,9 @@ import Foundation
 public enum PolymorphCoreError: Error {
 
     case notAvailableInPackage(character: Character)
+
+    case projectOutdated(version: String)
+
+    case polymorphCoreOutdated(version: String)
 }
 

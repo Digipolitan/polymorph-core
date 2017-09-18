@@ -7,18 +7,60 @@
 
 import Foundation
 
-public struct Property: Member, Documentable {
+public class Property: Member, Documentable, Codable {
+
+    public struct Mapping: Codable {
+
+        public struct TransformerConfiguration: Codable {
+
+            enum CodingKeys: String, CodingKey {
+                case transformer
+                case options
+            }
+
+            public var transformer: UUID
+            public var options: [Transformer.Option]
+
+            public init(transformer: UUID, options: [Transformer.Option] = []) {
+                self.transformer = transformer
+                self.options = options
+            }
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case key
+            case transformer
+            case isIgnored
+        }
+
+        public var key: String?
+        public var transformer: TransformerConfiguration?
+        public var isIgnored: Bool
+
+        public init(key: String? = nil, transformer: TransformerConfiguration? = nil) {
+            self.key = key
+            self.transformer = transformer
+            self.isIgnored = false
+        }
+
+        public static func ignored() -> Mapping {
+            var mapping = Mapping()
+            mapping.isIgnored = true
+            return mapping
+        }
+    }
 
     // MARK: Codable
 
     enum CodingKeys: String, CodingKey {
         case name
-        case key
+        case mapping
         case type
         case genericTypes
         case documentation
         case isPrimary
         case isNonnull
+        case isConst
         case isTransient
     }
 
@@ -26,7 +68,7 @@ public struct Property: Member, Documentable {
 
     public var name: String
 
-    public var key: String?
+    public var mapping: Mapping?
 
     public var type: UUID
 
@@ -37,6 +79,8 @@ public struct Property: Member, Documentable {
     public var isPrimary: Bool = false
 
     public var isNonnull: Bool = false
+
+    public var isConst: Bool = false
 
     public var isTransient: Bool = false
 

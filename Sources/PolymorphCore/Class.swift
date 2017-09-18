@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Class: Object, Packageable {
+public class Class: Object, Documentable, Packageable {
 
     // MARK: Codable
 
@@ -51,11 +51,7 @@ public struct Class: Object, Packageable {
 
     public internal(set) weak var project: Project? = nil {
         didSet {
-            self.properties = self.properties.map {
-                var p = $0
-                p.project = self.project
-                return p
-            }
+            self.properties.forEach { $0.project = self.project }
         }
     }
 
@@ -74,7 +70,7 @@ public struct Class: Object, Packageable {
     // MARK: Properties
 
     @discardableResult
-    public mutating func removeProperty(name: String) -> Bool {
+    public func removeProperty(name: String) -> Bool {
         if let idx = self.indexOf(property: name) {
             self.properties.remove(at: idx)
             return true
@@ -83,17 +79,12 @@ public struct Class: Object, Packageable {
     }
 
     @discardableResult
-    public mutating func addProperty(_ property: Property) -> Bool {
+    public func addProperty(_ property: Property) -> Bool {
         guard self.indexOf(property: property.name) == nil else {
             return false
         }
         self.properties.append(property)
         return true
-    }
-
-    @discardableResult
-    public mutating func updateProperty(_ property: Property) -> Bool {
-        return self.removeProperty(name: property.name) && self.addProperty(property)
     }
 
     public func findProperty(name: String) -> Property? {

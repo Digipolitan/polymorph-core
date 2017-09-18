@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol Documentable: Codable {
+public protocol Documentable {
     var documentation: String? { get }
 }
