@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "StringCase",
+        "repositoryURL": "https://github.com/Digipolitan/string-case-swift.git",
+        "state": {
+          "branch": "develop",
+          "revision": "08ed123c23c5c25d0032e53584d1b6ae1156cfbe",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
