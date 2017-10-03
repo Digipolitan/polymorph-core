@@ -1,6 +1,6 @@
 //
 //  Class.swift
-//  PolymorpthCore
+//  PolymorphCore
 //
 //  Created by Benoit BRIATTE on 15/06/2017.
 //
