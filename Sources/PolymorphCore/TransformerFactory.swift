@@ -20,7 +20,7 @@ internal class TransformerFactory {
         var idx = 1
         var result = [UUID: Transformer]()
         transformers.forEach {
-            guard let uuid = UUID(uuidString: "TRANSID0-0000-0000-0000-\(String(format: "%012d", idx))") else {
+            guard let uuid = UUID(uuidString: "00000002-0000-0000-0000-\(String(format: "%012d", idx))") else {
                 return
             }
             $0.project = project

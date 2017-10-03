@@ -25,7 +25,7 @@ internal class NativeFactory {
         var idx = 1
         var natives = [UUID: Native]()
         NativeFactory.dataTypes.forEach {
-            guard let uuid = UUID(uuidString: "NATIVEID-0000-0000-0000-\(String(format: "%012d", idx))") else {
+            guard let uuid = UUID(uuidString: "00000001-0000-0000-0000-\(String(format: "%012d", idx))") else {
                 return
             }
             let native = Native(type: $0)
