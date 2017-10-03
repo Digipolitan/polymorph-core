@@ -13,7 +13,7 @@ let package = Package(
             targets: ["PolymorphCore"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/Digipolitan/string-case-swift.git", .branch("develop")),
+        .package(url: "https://github.com/Digipolitan/string-case-swift.git", .branch("master")),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
