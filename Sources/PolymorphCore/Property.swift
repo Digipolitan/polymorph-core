@@ -62,6 +62,7 @@ public class Property: Member, Documentable, Codable {
         case isNonnull
         case isConst
         case isTransient
+        case defaultValue
     }
 
     // MARK: Properties
@@ -83,6 +84,8 @@ public class Property: Member, Documentable, Codable {
     public var isConst: Bool = false
 
     public var isTransient: Bool = false
+
+    public var defaultValue: String?
 
     public internal(set) weak var project: Project? = nil
 
