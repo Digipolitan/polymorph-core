@@ -14,15 +14,15 @@ public class Property: Member, Documentable, Codable {
         public struct TransformerConfiguration: Codable {
 
             enum CodingKeys: String, CodingKey {
-                case transformer
+                case id
                 case options
             }
 
-            public var transformer: UUID
+            public var id: UUID
             public var options: [Transformer.Option]
 
-            public init(transformer: UUID, options: [Transformer.Option] = []) {
-                self.transformer = transformer
+            public init(id: UUID, options: [Transformer.Option] = []) {
+                self.id = id
                 self.options = options
             }
         }
