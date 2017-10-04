@@ -14,8 +14,7 @@ internal class TransformerFactory {
             Transformer(name: "timestamp"),
             Transformer(name: "date", options: [
                 .init(name: "format", required: true, value: "yyyy-MM-dd'T'HH:mm:ssZZZ")
-            ]),
-            Transformer(name: "base64")
+            ])
         ]
         var idx = 1
         var result = [UUID: Transformer]()
