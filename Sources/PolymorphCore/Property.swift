@@ -14,15 +14,15 @@ public class Property: Member, Documentable, Codable {
         public struct TransformerConfiguration: Codable {
 
             enum CodingKeys: String, CodingKey {
-                case transformer
+                case id
                 case options
             }
 
-            public var transformer: UUID
+            public var id: UUID
             public var options: [Transformer.Option]
 
-            public init(transformer: UUID, options: [Transformer.Option] = []) {
-                self.transformer = transformer
+            public init(id: UUID, options: [Transformer.Option] = []) {
+                self.id = id
                 self.options = options
             }
         }
@@ -62,6 +62,7 @@ public class Property: Member, Documentable, Codable {
         case isNonnull
         case isConst
         case isTransient
+        case defaultValue
     }
 
     // MARK: Properties
@@ -83,6 +84,8 @@ public class Property: Member, Documentable, Codable {
     public var isConst: Bool = false
 
     public var isTransient: Bool = false
+
+    public var defaultValue: String?
 
     public internal(set) weak var project: Project? = nil
 

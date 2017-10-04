@@ -24,7 +24,7 @@ public class Transformer: Member {
         public init(name: String, required: Bool = false, value: String? = nil) {
             self.name = name
             self.required = required
-            self.value = nil
+            self.value = value
         }
 
         public func update(_ value: String?) -> Option {

@@ -77,7 +77,7 @@ public class Models: Documentable, Codable {
 
     @discardableResult
     public func removeClass(uuid: UUID) -> Bool {
-        guard self.classes[uuid] == nil else {
+        guard self.classes[uuid] != nil else {
             return false
         }
         self.classes[uuid] = nil
@@ -109,7 +109,7 @@ public class Models: Documentable, Codable {
 
     @discardableResult
     public func removeEnum(uuid: UUID) -> Bool {
-        guard self.enums[uuid] == nil else {
+        guard self.enums[uuid] != nil else {
             return false
         }
         self.enums[uuid] = nil

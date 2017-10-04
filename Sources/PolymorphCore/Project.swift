@@ -81,29 +81,29 @@ public class Project: Packageable, Documentable {
 
     // MARK Natives
 
-    public func findNative(type: Native.DataType) -> Native? {
-        return self.natives.first { $0.value.name == type.rawValue }?.value
+    public func findNative(type: Native.DataType) -> UUID? {
+        return self.natives.first { $0.value.name == type.rawValue }?.key
     }
 
-    public func findNative(name: String) -> Native? {
+    public func findNative(name: String) -> UUID? {
         guard let dataType = Native.DataType.from(string: name) else {
             return nil
         }
         return self.findNative(type: dataType)
     }
 
-    public func searchNatives(matching: String) -> [Native] {
-        return self.natives.values.filter { $0.name.range(of: matching, options: .caseInsensitive) != nil }
+    public func searchNatives(matching: String) -> [UUID: Native] {
+        return self.natives.filter {  $0.value.name.range(of: matching, options: .caseInsensitive) != nil }
     }
 
     // MARK Transformers
 
-    public func findTransformer(name: String) -> Transformer? {
-        return self.transformers.first { $0.value.name == name }?.value
+    public func findTransformer(name: String) -> UUID? {
+        return self.transformers.first { $0.value.name == name }?.key
     }
 
-    public func searchTransformers(matching: String) -> [Transformer] {
-        return self.transformers.values.filter { $0.name.range(of: matching, options: .caseInsensitive) != nil }
+    public func searchTransformers(matching: String) -> [UUID: Transformer] {
+        return self.transformers.filter { $0.value.name.range(of: matching, options: .caseInsensitive) != nil }
     }
 
 }
