@@ -19,6 +19,7 @@ public class Project: Packageable, Documentable {
         case author
         case copyright
         case models
+        case network
     }
 
     // MARK: Properties
@@ -37,6 +38,8 @@ public class Project: Packageable, Documentable {
 
     public var models: Models
 
+    public var network: Network
+
     public lazy var natives: [UUID: Native] = {
         return NativeFactory.create(project: self)
     }()
@@ -52,8 +55,10 @@ public class Project: Packageable, Documentable {
         self.package = package
         self.version = Polymorph.version
         self.models = Models()
+        self.network = Network()
         defer {
             self.models.project = self
+            self.network.project = self
         }
     }
 
@@ -74,8 +79,10 @@ public class Project: Packageable, Documentable {
         self.author = try container.decodeIfPresent(String.self, forKey: .author)
         self.copyright = try container.decodeIfPresent(String.self, forKey: .copyright)
         self.models = try container.decode(Models.self, forKey: .models)
+        self.network = try container.decode(Network.self, forKey: .network)
         defer {
             self.models.project = self
+            self.network.project = self
         }
     }
 
