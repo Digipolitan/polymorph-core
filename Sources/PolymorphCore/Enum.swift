@@ -17,16 +17,22 @@ public class Enum: Object, Documentable, Packageable {
         case package
         case values
         case documentation
+        case rawType
+    }
+
+    public enum RawType: String, Codable {
+        case int
+        case string
     }
 
     public struct Value: Documentable, Codable {
         public var name: String
-        public var numeric: Int
+        public var raw: String
         public var documentation: String?
 
-        public init(name: String, numeric: Int) {
+        public init(name: String, raw: String) {
             self.name = name
-            self.numeric = numeric
+            self.raw = raw
         }
     }
 
@@ -35,6 +41,8 @@ public class Enum: Object, Documentable, Packageable {
     public var id: UUID
 
     public var name: String
+
+    public var rawType: RawType
 
     public var package: Package
 
@@ -55,9 +63,10 @@ public class Enum: Object, Documentable, Packageable {
 
     // MARK: Initializers
 
-    public init(name: String, package: Package, values: [Value] = []) {
+    public init(name: String, package: Package, rawType: RawType = .int, values: [Value] = []) {
         self.id = UUID()
         self.name = name
+        self.rawType = rawType
         self.package = package
         self.values = values
     }
