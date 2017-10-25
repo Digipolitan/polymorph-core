@@ -17,6 +17,18 @@ public class Endpoint: Member, Documentable, Codable {
         case options
         case trace
         case connect
+
+        public func all() -> [Method] {
+            return [
+                .get,
+                .post,
+                .put,
+                .delete,
+                .options,
+                .trace,
+                .connect
+            ]
+        }
     }
 
     // MARK: Codable
