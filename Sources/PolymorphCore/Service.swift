@@ -16,7 +16,7 @@ public class Service: Object, Documentable, Packageable {
         case xml
         case yaml
 
-        public func all() -> [Transformer] {
+        public static func all() -> [Transformer] {
             return [
                 .raw,
                 .string,

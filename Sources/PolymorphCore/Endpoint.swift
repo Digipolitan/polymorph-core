@@ -18,7 +18,7 @@ public class Endpoint: Member, Documentable, Codable {
         case trace
         case connect
 
-        public func all() -> [Method] {
+        public static func all() -> [Method] {
             return [
                 .get,
                 .post,
