@@ -13,7 +13,7 @@ internal class TransformerFactory {
         let transformers = [
             Transformer(name: "timestamp"),
             Transformer(name: "date", options: [
-                .init(name: "format", required: true, value: "yyyy-MM-dd'T'HH:mm:ssZZZ")
+                .init(name: "format", required: true, value: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
             ])
         ]
         var idx = 1

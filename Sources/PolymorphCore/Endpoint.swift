@@ -37,6 +37,8 @@ public class Endpoint: Member, Documentable, Codable {
         case name
         case path
         case method
+        case serializer
+        case parser
         case inputType
         case inputGenericTypes
         case outputType
@@ -51,6 +53,10 @@ public class Endpoint: Member, Documentable, Codable {
     public var path: String
 
     public var method: Method
+
+    public var serializer: Service.Transformer?
+
+    public var parser: Service.Transformer?
 
     public var inputType: UUID
 
