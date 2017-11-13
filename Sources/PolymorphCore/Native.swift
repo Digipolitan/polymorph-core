@@ -22,6 +22,22 @@ public class Native: Member {
         case url = "URL"
         case multilingual = "Multilingual"
 
+        public static func all() -> [DataType] {
+            return [
+                .int,
+                .bool,
+                .double,
+                .float,
+                .date,
+                .string,
+                .data,
+                .array,
+                .map,
+                .url,
+                .multilingual
+            ]
+        }
+
         public static func from(string: String) -> DataType? {
             return Native.mapping[string.lowercased()]
         }

@@ -13,6 +13,14 @@ public class External: Object, Documentable, Packageable {
         case `class`
         case interface
         case `enum`
+
+        public static func all() -> [ExternalType] {
+            return [
+                .class,
+                .interface,
+                .enum
+            ]
+        }
     }
 
     // MARK: Codable
