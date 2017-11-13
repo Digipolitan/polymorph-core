@@ -86,7 +86,7 @@ public class Project: Packageable, Documentable {
         }
     }
 
-    // MARK Natives
+    // MARK: Natives
 
     public func findNative(type: Native.DataType) -> UUID? {
         return self.natives.first { $0.value.name == type.rawValue }?.key
@@ -103,7 +103,7 @@ public class Project: Packageable, Documentable {
         return self.natives.filter {  $0.value.name.range(of: matching, options: .caseInsensitive) != nil }
     }
 
-    // MARK Transformers
+    // MARK: Transformers
 
     public func findTransformer(name: String) -> UUID? {
         return self.transformers.first { $0.value.name == name }?.key

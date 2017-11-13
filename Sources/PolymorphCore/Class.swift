@@ -131,7 +131,7 @@ extension Class: Hashable {
         return self.id.hashValue
     }
 
-    public static func ==(lhs: Class, rhs: Class) -> Bool {
+    public static func == (lhs: Class, rhs: Class) -> Bool {
         return lhs.name == rhs.name
     }
 }

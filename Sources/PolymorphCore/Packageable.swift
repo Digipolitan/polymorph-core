@@ -12,9 +12,8 @@ public protocol Packageable: Codable {
 }
 
 public extension Packageable {
-    
+
     public func merge(parent: Packageable) throws -> Package {
         return try parent.package.append(package: self.package)
     }
 }
-

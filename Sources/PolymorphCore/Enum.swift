@@ -88,7 +88,7 @@ extension Enum: Hashable {
         return self.id.hashValue
     }
 
-    public static func ==(lhs: Enum, rhs: Enum) -> Bool {
+    public static func == (lhs: Enum, rhs: Enum) -> Bool {
         return lhs.name == rhs.name
     }
 }

@@ -14,6 +14,9 @@ internal class TransformerFactory {
             Transformer(name: "timestamp"),
             Transformer(name: "date", options: [
                 .init(name: "format", required: true, value: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+            ]),
+            Transformer(name: "url", options: [
+                .init(name: "encode", required: true, value: "false")
             ])
         ]
         var idx = 1

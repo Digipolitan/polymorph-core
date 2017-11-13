@@ -34,7 +34,7 @@ public class Transformer: Member {
 
     public let name: String
     public let options: [Option]
-    public internal(set) weak var project: Project? = nil
+    public internal(set) weak var project: Project?
 
     internal init(name: String, options: [Option] = []) {
         self.name = name
@@ -48,9 +48,7 @@ extension Transformer: Hashable {
         return self.name.hashValue
     }
 
-    public static func ==(lhs: Transformer, rhs: Transformer) -> Bool {
+    public static func == (lhs: Transformer, rhs: Transformer) -> Bool {
         return lhs.name == rhs.name
     }
 }
-
-

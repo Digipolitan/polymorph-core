@@ -19,6 +19,8 @@ public class Native: Member {
         case data = "Data"
         case array = "Array"
         case map = "Map"
+        case url = "URL"
+        case multilingual = "Multilingual"
 
         public static func from(string: String) -> DataType? {
             return Native.mapping[string.lowercased()]
@@ -39,14 +41,16 @@ public class Native: Member {
         "array": .array,
         "map": .map,
         "dict": .map,
-        "dictionary": .map
+        "dictionary": .map,
+        "url": .url,
+        "multilingual": .multilingual
     ]
 
     // MARK: Properties
 
     public var name: String
 
-    public internal(set) weak var project: Project? = nil
+    public internal(set) weak var project: Project?
 
     // MARK: Initializers
 
@@ -61,7 +65,7 @@ extension Native: Hashable {
         return self.name.hashValue
     }
 
-    public static func ==(lhs: Native, rhs: Native) -> Bool {
+    public static func == (lhs: Native, rhs: Native) -> Bool {
         return lhs.name == rhs.name
     }
 }

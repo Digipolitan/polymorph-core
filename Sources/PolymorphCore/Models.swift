@@ -15,6 +15,7 @@ public class Models: Documentable, Codable {
         case documentation
         case classes
         case enums
+        case externals
     }
 
     // MARK: Properties
@@ -23,11 +24,13 @@ public class Models: Documentable, Codable {
 
     public private(set) var classes: [UUID: Class]
     public private(set) var enums: [UUID: Enum]
+    public private(set) var externals: [UUID: External]
 
     public internal(set) weak var project: Project? = nil {
         didSet {
             self.classes.values.forEach { $0.project = self.project }
             self.enums.values.forEach { $0.project = self.project }
+            self.externals.values.forEach { $0.project = self.project }
         }
     }
 
@@ -36,6 +39,7 @@ public class Models: Documentable, Codable {
     public init() {
         self.classes = [:]
         self.enums = [:]
+        self.externals = [:]
     }
 
     // MARK: Objects
@@ -47,20 +51,24 @@ public class Models: Documentable, Codable {
         if let en = self.enums[uuid] {
             return en
         }
-        return nil
+        return self.externals[uuid]
     }
 
     public func findObject(name: String) -> Object? {
         if let c = self.findClass(name: name) {
             return c
         }
-        return self.findEnum(name: name)
+        if let e = self.findEnum(name: name) {
+            return e
+        }
+        return self.findExternal(name: name)
     }
 
     public func searchObjects(matching: String) -> [Object] {
         var objects: [Object] = []
         objects += self.searchClasses(matching: matching) as [Object]
         objects += self.searchEnums(matching: matching) as [Object]
+        objects += self.searchExternals(matching: matching) as [Object]
         return objects
     }
 
@@ -122,5 +130,33 @@ public class Models: Documentable, Codable {
 
     public func searchEnums(matching: String) -> [Enum] {
         return self.enums.values.filter { $0.name.range(of: matching, options: .caseInsensitive) != nil }
+    }
+
+    // MARK: External
+
+    @discardableResult
+    public func addExternal(_ newExternal: External) -> Bool {
+        guard self.externals[newExternal.id] == nil else {
+            return false
+        }
+        self.externals[newExternal.id] = newExternal
+        return true
+    }
+
+    @discardableResult
+    public func removeExternal(uuid: UUID) -> Bool {
+        guard self.externals[uuid] != nil else {
+            return false
+        }
+        self.externals[uuid] = nil
+        return true
+    }
+
+    public func findExternal(name: String) -> External? {
+        return self.externals.first { $0.value.name == name }?.value
+    }
+
+    public func searchExternals(matching: String) -> [External] {
+        return self.externals.values.filter { $0.name.range(of: matching, options: .caseInsensitive) != nil }
     }
 }
