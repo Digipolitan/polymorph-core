@@ -74,7 +74,7 @@ public class Property: Member, Documentable, Codable {
     public var type: UUID
 
     public var genericTypes: [UUID]?
-    
+
     public var documentation: String?
 
     public var isPrimary: Bool = false
@@ -116,7 +116,7 @@ extension Property: Hashable {
         return self.name.hashValue
     }
 
-    public static func ==(lhs: Property, rhs: Property) -> Bool {
+    public static func == (lhs: Property, rhs: Property) -> Bool {
         return lhs.name == rhs.name
     }
 }

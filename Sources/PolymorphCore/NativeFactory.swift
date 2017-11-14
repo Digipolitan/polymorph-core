@@ -9,22 +9,10 @@ import Foundation
 
 internal class NativeFactory {
 
-    internal static let dataTypes: [Native.DataType] = [
-        .int,
-        .bool,
-        .double,
-        .float,
-        .date,
-        .string,
-        .data,
-        .array,
-        .map
-    ]
-
     internal static func create(project: Project) -> [UUID: Native] {
         var idx = 1
         var natives = [UUID: Native]()
-        NativeFactory.dataTypes.forEach {
+        Native.DataType.all().forEach {
             guard let uuid = UUID(uuidString: "00000001-0000-0000-0000-\(String(format: "%012d", idx))") else {
                 return
             }

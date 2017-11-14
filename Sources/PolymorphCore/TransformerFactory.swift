@@ -11,10 +11,14 @@ internal class TransformerFactory {
 
     public static func create(project: Project) -> [UUID: Transformer] {
         let transformers = [
-            Transformer(name: "timestamp"),
-            Transformer(name: "date", options: [
-                .init(name: "format", required: true, value: "yyyy-MM-dd'T'HH:mm:ssZZZ")
-            ])
+            Transformer(name: "Timestamp"),
+            Transformer(name: "Date", options: [
+                .init(name: "format", required: true, value: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+            ]),
+            Transformer(name: "URL", options: [
+                .init(name: "encode", required: true, value: "false")
+            ]),
+            Transformer(name: "Multilingual")
         ]
         var idx = 1
         var result = [UUID: Transformer]()

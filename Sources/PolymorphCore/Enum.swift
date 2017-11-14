@@ -23,6 +23,13 @@ public class Enum: Object, Documentable, Packageable {
     public enum RawType: String, Codable {
         case int
         case string
+
+        public static func all() -> [RawType] {
+            return [
+                .int,
+                .string
+            ]
+        }
     }
 
     public struct Value: Documentable, Codable {
@@ -88,7 +95,7 @@ extension Enum: Hashable {
         return self.id.hashValue
     }
 
-    public static func ==(lhs: Enum, rhs: Enum) -> Bool {
+    public static func == (lhs: Enum, rhs: Enum) -> Bool {
         return lhs.name == rhs.name
     }
 }

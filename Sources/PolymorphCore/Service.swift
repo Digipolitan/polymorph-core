@@ -15,6 +15,16 @@ public class Service: Object, Documentable, Packageable {
         case json
         case xml
         case yaml
+
+        public static func all() -> [Transformer] {
+            return [
+                .raw,
+                .string,
+                .json,
+                .xml,
+                .yaml
+            ]
+        }
     }
 
     // MARK: Codable

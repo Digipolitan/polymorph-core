@@ -15,4 +15,3 @@ public enum PolymorphCoreError: Error {
 
     case polymorphCoreOutdated(version: String)
 }
-

@@ -9,7 +9,7 @@ import Foundation
 
 public class Polymorph {
 
-    public static let version = "1.0.0"
+    public static let version = "1.1.0"
 
     public static func compare(version: String) -> ComparisonResult {
         let current = Polymorph.version.split(separator: ".").map { return Int("\($0)") ?? 0 }
