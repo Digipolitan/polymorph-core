@@ -94,6 +94,21 @@ public class Class: Object, Documentable, Packageable {
         return nil
     }
 
+    public func arrangeProperty(_ property: Property, at index: Int) {
+        guard index >= 0 && index < self.properties.count else {
+            return
+        }
+        guard let propertyIndex = self.indexOf(property: property.name) else {
+            return
+        }
+        self.properties.remove(at: propertyIndex)
+        self.properties.insert(property, at: index)
+    }
+
+    public func sortProperties(using predicate: (Property, Property) throws -> Bool) throws {
+        try self.properties.sort(by: predicate)
+    }
+
     private func indexOf(property name: String) -> Int? {
         return self.properties.index(where: { $0.name == name })
     }
