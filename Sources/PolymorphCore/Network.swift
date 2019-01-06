@@ -44,8 +44,8 @@ public class Network: Documentable, Codable {
     }
 
     public func findObject(name: String) -> Object? {
-        if let c = self.findService(name: name) {
-            return c
+        if let service = self.findService(name: name) {
+            return service
         }
         return nil
     }

@@ -44,8 +44,8 @@ public class Transformer: Member {
 
 extension Transformer: Hashable {
 
-    public var hashValue: Int {
-        return self.name.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.name)
     }
 
     public static func == (lhs: Transformer, rhs: Transformer) -> Bool {

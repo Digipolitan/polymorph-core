@@ -77,8 +77,8 @@ public class Native: Member {
 
 extension Native: Hashable {
 
-    public var hashValue: Int {
-        return self.name.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.name)
     }
 
     public static func == (lhs: Native, rhs: Native) -> Bool {

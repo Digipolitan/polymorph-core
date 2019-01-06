@@ -55,11 +55,11 @@ public class Models: Documentable, Codable {
     }
 
     public func findObject(name: String) -> Object? {
-        if let c = self.findClass(name: name) {
-            return c
+        if let clazz = self.findClass(name: name) {
+            return clazz
         }
-        if let e = self.findEnum(name: name) {
-            return e
+        if let enu = self.findEnum(name: name) {
+            return enu
         }
         return self.findExternal(name: name)
     }

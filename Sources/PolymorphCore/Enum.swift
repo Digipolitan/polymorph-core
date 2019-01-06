@@ -79,8 +79,8 @@ public class Enum: Object, Documentable, Packageable {
     }
 
     public func addValue(_ value: Value) -> Bool {
-        for v in self.values {
-            guard v.name != value.name else {
+        for val in self.values {
+            guard val.name != value.name else {
                 return false
             }
         }
@@ -91,8 +91,8 @@ public class Enum: Object, Documentable, Packageable {
 
 extension Enum: Hashable {
 
-    public var hashValue: Int {
-        return self.id.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
     }
 
     public static func == (lhs: Enum, rhs: Enum) -> Bool {
