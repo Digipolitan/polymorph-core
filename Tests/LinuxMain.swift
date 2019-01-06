@@ -1,6 +1,7 @@
 import XCTest
-@testable import PolymorpthCoreTests
 
-XCTMain([
-    testCase(PolymorpthCoreTests.allTests)
-])
+import PolymorphCoreTests
+
+var tests = [XCTestCaseEntry]()
+tests += PolymorphCoreTests.allTests()
+XCTMain(tests)

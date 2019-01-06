@@ -8,10 +8,10 @@ class PolymorphCoreTests: XCTestCase {
             XCTFail("Cannot create package")
             return
         }
-        let p = Project(name: "Sample", package: package)
+        let proj = Project(name: "Sample", package: package)
 
         let encoder = JSONEncoder()
-        if let data = try? encoder.encode(p),
+        if let data = try? encoder.encode(proj),
             let json = String(data: data, encoding: .utf8) {
             print(json)
         }

@@ -6,3 +6,4 @@ excluded:
 disabled_rules:
   - nesting
   - redundant_optional_initialization
+  - inert_defer

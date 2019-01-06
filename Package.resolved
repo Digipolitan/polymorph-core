@@ -5,9 +5,9 @@
         "package": "StringCase",
         "repositoryURL": "https://github.com/Digipolitan/string-case-swift.git",
         "state": {
-          "branch": "develop",
-          "revision": "08ed123c23c5c25d0032e53584d1b6ae1156cfbe",
-          "version": null
+          "branch": null,
+          "revision": "565a596e8a511ff8995acc1b3f0167165acb2617",
+          "version": "1.1.0"
         }
       }
     ]

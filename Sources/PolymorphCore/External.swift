@@ -68,8 +68,8 @@ public class External: Object, Documentable, Packageable {
 
 extension External: Hashable {
 
-    public var hashValue: Int {
-        return self.id.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
     }
 
     public static func == (lhs: External, rhs: External) -> Bool {
